@@ -7,10 +7,10 @@
    CONDITIONS OF ANY KIND, either express or implied.
 */
 #include <stdio.h>
+
+//why freertos ? idk
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-
-#include "esp_log.h"
 #include "sdkconfig.h"
 
 
