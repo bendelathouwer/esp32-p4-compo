@@ -1,7 +1,7 @@
 {
     "C_Cpp.intelliSenseEngine": "default",
     "idf.espIdfPath": "/Users/ben/esp/v5.4.1/esp-idf",
-    "idf.pythonInstallPath": "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "idf.pythonInstallPath": "C:\\Users\\bende\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
     "idf.espAdfPath": "/Users/ben/.espressif/esp-adf",
     "idf.espMdfPath": "/Users/ben/.espressif/esp-mdf",
     "idf.openOcdConfigs": [
