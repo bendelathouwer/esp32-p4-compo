@@ -8,5 +8,12 @@
         "board/esp32p4-builtin.cfg"
     ],
     "idf.portWin": "COM9",
-    "idf.toolsPathWin": "C:\\Users\\bende\\.espressif"
+    "idf.toolsPathWin": "C:\\Users\\bende\\.espressif",
+    "files.associations": {
+        "unistd.h": "c",
+        "sd_pwr_ctrl_by_on_chip_ldo.h": "c",
+        "esp_mac.h": "c",
+        "sdmmc_host.h": "c"
+    },
+    "idf.flashType": "JTAG"
 }

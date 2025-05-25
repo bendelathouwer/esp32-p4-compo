@@ -1,4 +1,4 @@
-menu "SD/MMC  Configuration"
+menu "SD/MMC Example Configuration"
 
     config EXAMPLE_FORMAT_IF_MOUNT_FAILED
         bool "Format the card if mount failed"
@@ -8,7 +8,7 @@ menu "SD/MMC  Configuration"
             the mount has failed.
 
     config EXAMPLE_FORMAT_SD_CARD
-        bool "Format the card as a part of the programm"
+        bool "Format the card as a part of the example"
         default n
         help
             If this config item is set, the card will be formatted as a part of the example.
@@ -168,81 +168,3 @@ menu "SD/MMC  Configuration"
         help
             Please read the schematic first and input your LDO ID.
 endmenu
-menu "i2s Configuration"
-
-    menu "i2s IO Configuration"
-        config EXAMPLE_PA_CTRL_IO
-            int "Power Amplifier control IO"
-            default 53 if IDF_TARGET_ESP32P4
-            default -1
-            help
-                Set GPIO number for PA control. Set -1 to disable PA control.
-
-        config EXAMPLE_I2C_SDA_IO
-            int "I2C SDA IO"
-            default 17 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
-            default 9 if IDF_TARGET_ESP32H2
-            default 7
-
-        config EXAMPLE_I2C_SCL_IO
-            int "I2C SCL IO"
-            default 16 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
-            default 8 if IDF_TARGET_ESP32H2 || IDF_TARGET_ESP32P4
-            default 6
-
-        config EXAMPLE_I2S_MCLK_IO
-            int "I2S MCLK IO"
-            default 13 if IDF_TARGET_ESP32P4
-            default 0
-
-        config EXAMPLE_I2S_BCLK_IO
-            int "I2S BCLK IO"
-            default 12 if IDF_TARGET_ESP32P4
-            default 4
-
-        config EXAMPLE_I2S_WS_IO
-            int "I2S WS IO"
-            default 10 if IDF_TARGET_ESP32P4
-            default 5
-
-        config EXAMPLE_I2S_DIN_IO
-            int "I2S DIN IO"
-            default 19 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
-            default 11 if IDF_TARGET_ESP32P4
-            default 3
-
-        config EXAMPLE_I2S_DOUT_IO
-            int "I2S DOUT IO"
-            default 18 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
-            default 9 if IDF_TARGET_ESP32P4
-            default 2
-
-endmenu
-menu "Example Configuration"
-    config EXAMPLE_USE_DMA2D_COPY_FRAME
-        bool "Use DMA2D to copy draw buffer to frame buffer"
-        default y
-        help
-            Enable this option, DMA2D will be used to copy the LVGL draw buffer to the target frame buffer.
-            This can save some CPU time and improve the performance.
-
-    config EXAMPLE_MONITOR_REFRESH_BY_GPIO
-        bool "Monitor Refresh Rate by GPIO"
-        default y
-        help
-            Enable this option, you can visualize the refresh rate by attaching a logic analyzer to a specific GPIO.
-            The GPIO will output a square wave with the frequency equals to half of the refresh rate.
-
-    choice
-        prompt "Select MIPI LCD model"
-        default EXAMPLE_LCD_EK79007_SUPPORT
-        help
-            Select LCD controller model.
-
-        config EXAMPLE_LCD_USE_EK79007
-            bool "EK79007"
-        config EXAMPLE_LCD_USE_ILI9881C
-            bool "ILI9881C"
-    endchoice
-endmenu
-
