@@ -13,6 +13,8 @@
     "sdmmc_host.h": "c",
     "sdmmc_default_configs.h": "c",
     "sdmmc_cmd.h": "c",
-    "esp_vfs_fat.h": "c"
+    "esp_vfs_fat.h": "c",
+    "ff.h": "c",
+    "sdspi_host.h": "c"
   }
 }

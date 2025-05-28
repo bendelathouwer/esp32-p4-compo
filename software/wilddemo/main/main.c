@@ -13,7 +13,7 @@
 
 static const char *TAG = "example";
 
-#define MOUNT_POINT "/Demo"// is the root of the filesystem so to speak ( is also the name of the SD card )
+#define MOUNT_POINT "/DEMO"// is the root of the filesystem so to speak ( is also the name of the SD card )
 
 #ifdef CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
 const char* names[] = {"CLK", "CMD", "D0", "D1", "D2", "D3"};
