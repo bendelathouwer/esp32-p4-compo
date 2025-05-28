@@ -13,7 +13,7 @@
 
 static const char *TAG = "example";
 
-#define MOUNT_POINT "/PICOPI"
+#define MOUNT_POINT "/Demo"// is the root of the filesystem so to speak ( is also the name of the SD card )
 
 #ifdef CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
 const char* names[] = {"CLK", "CMD", "D0", "D1", "D2", "D3"};
@@ -143,9 +143,7 @@ void app_main(void)
         } else {
             ESP_LOGE(TAG, "Failed to initialize the card (%s). "
                      "Make sure SD card lines have pull-up resistors in place.", esp_err_to_name(ret));
-#ifdef CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
-            check_sd_card_pins(&config, pin_count);
-#endif
+                     
         }
         return;
     }
