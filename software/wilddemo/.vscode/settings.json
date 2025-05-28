@@ -1,19 +1,5 @@
 {
-    "C_Cpp.intelliSenseEngine": "default",
-    "idf.espIdfPathWin": "C:\\Users\\bende\\esp\\v5.4.1\\esp-idf",
-    "idf.pythonInstallPath": "C:\\Users\\bende\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
-    "idf.espAdfPathWin": "C:\\Users\\bende\\.espressif\\esp-adf",
-    "idf.espMdfPathWin": "C:\\Users\\bende\\.espressif\\esp-mdf",
-    "idf.openOcdConfigs": [
-        "board/esp32p4-builtin.cfg"
-    ],
-    "idf.portWin": "COM9",
-    "idf.toolsPathWin": "C:\\Users\\bende\\.espressif",
-    "files.associations": {
-        "unistd.h": "c",
-        "sd_pwr_ctrl_by_on_chip_ldo.h": "c",
-        "esp_mac.h": "c",
-        "sdmmc_host.h": "c"
-    },
-    "idf.flashType": "JTAG"
+    "C_Cpp.default.compilerPath": "",
+    "idf.flashType": "UART",
+    "idf.portWin": "COM13"
 }

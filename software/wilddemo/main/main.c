@@ -1,13 +1,3 @@
-/* SD card and FAT filesystem example.
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
-
-// This example uses SDMMC peripheral to communicate with SD card.
-
 #include <string.h>
 #include <sys/unistd.h>
 #include <sys/stat.h>
@@ -23,7 +13,7 @@
 
 static const char *TAG = "example";
 
-#define MOUNT_POINT "/sdcard"
+#define MOUNT_POINT "/PICOPI"
 
 #ifdef CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
 const char* names[] = {"CLK", "CMD", "D0", "D1", "D2", "D3"};
@@ -39,18 +29,6 @@ const int pins[] = {CONFIG_EXAMPLE_PIN_CLK,
 
 const int pin_count = sizeof(pins)/sizeof(pins[0]);
 
-#if CONFIG_EXAMPLE_ENABLE_ADC_FEATURE
-const int adc_channels[] = {CONFIG_EXAMPLE_ADC_PIN_CLK,
-                            CONFIG_EXAMPLE_ADC_PIN_CMD,
-                            CONFIG_EXAMPLE_ADC_PIN_D0
-                            #ifdef CONFIG_EXAMPLE_SDMMC_BUS_WIDTH_4
-                            ,CONFIG_EXAMPLE_ADC_PIN_D1,
-                            CONFIG_EXAMPLE_ADC_PIN_D2,
-                            CONFIG_EXAMPLE_ADC_PIN_D3
-                            #endif
-                            };
-#endif //CONFIG_EXAMPLE_ENABLE_ADC_FEATURE
-
 pin_configuration_t config = {
     .names = names,
     .pins = pins,
@@ -60,20 +38,6 @@ pin_configuration_t config = {
 };
 #endif //CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
 
-static esp_err_t s_example_write_file(const char *path, char *data)
-{
-    ESP_LOGI(TAG, "Opening file %s", path);
-    FILE *f = fopen(path, "w");
-    if (f == NULL) {
-        ESP_LOGE(TAG, "Failed to open file for writing");
-        return ESP_FAIL;
-    }
-    fprintf(f, data);
-    fclose(f);
-    ESP_LOGI(TAG, "File written");
-
-    return ESP_OK;
-}
 
 static esp_err_t s_example_read_file(const char *path)
 {
@@ -104,14 +68,8 @@ void app_main(void)
     // Options for mounting the filesystem.
     // If format_if_mount_failed is set to true, SD card will be partitioned and
     // formatted in case when mounting fails.
-    esp_vfs_fat_sdmmc_mount_config_t mount_config = {
-#ifdef CONFIG_EXAMPLE_FORMAT_IF_MOUNT_FAILED
-        .format_if_mount_failed = true,
-#else
+   esp_vfs_fat_sdmmc_mount_config_t mount_config = {
         .format_if_mount_failed = false,
-#endif // EXAMPLE_FORMAT_IF_MOUNT_FAILED
-        .max_files = 5,
-        .allocation_unit_size = 16 * 1024
     };
     sdmmc_card_t *card;
     const char mount_point[] = MOUNT_POINT;
@@ -195,6 +153,10 @@ void app_main(void)
 
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
+
+
+
+    //const char *file_foo = MOUNT_POINT"/foo.txt";
     // All done, unmount partition and disable SDMMC peripheral
     esp_vfs_fat_sdcard_unmount(mount_point, card);
     ESP_LOGI(TAG, "Card unmounted");
