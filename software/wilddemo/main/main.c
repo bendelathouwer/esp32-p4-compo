@@ -37,9 +37,7 @@ pin_configuration_t config = {
 #endif
 };
 #endif //CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
-
-
-static esp_err_t s_example_read_file(const char *path)
+/*static esp_err_t read_file(const char *path)
 {
     ESP_LOGI(TAG, "Reading file %s", path);
     FILE *f = fopen(path, "r");
@@ -47,6 +45,7 @@ static esp_err_t s_example_read_file(const char *path)
         ESP_LOGE(TAG, "Failed to open file for reading");
         return ESP_FAIL;
     }
+   
     char line[EXAMPLE_MAX_CHAR_SIZE];
     fgets(line, sizeof(line), f);
     fclose(f);
@@ -59,7 +58,7 @@ static esp_err_t s_example_read_file(const char *path)
     ESP_LOGI(TAG, "Read from file: '%s'", line);
 
     return ESP_OK;
-}
+}*/
 
 void app_main(void)
 {
@@ -154,9 +153,10 @@ void app_main(void)
 
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
-
-
-
+    const *char path = MOUNT_POINT"/audio/le poisson steve.mp3";
+    char f = fopen(path , "r");
+    LOG(f);
+    
     //const char *file_foo = MOUNT_POINT"/foo.txt";
     // All done, unmount partition and disable SDMMC peripheral
     esp_vfs_fat_sdcard_unmount(mount_point, card);
