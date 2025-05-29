@@ -113,8 +113,6 @@ void app_main(void)
     // Set bus width to use:
 #ifdef CONFIG_EXAMPLE_SDMMC_BUS_WIDTH_4
     slot_config.width = 4;
-#else
-    slot_config.width = 1;
 #endif
 
     // On chips where the GPIOs used for SD card can be configured, set them in
@@ -153,9 +151,9 @@ void app_main(void)
 
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
-    const *char path = MOUNT_POINT"/audio/le poisson steve.mp3";
-    char f = fopen(path , "r");
-    LOG(f);
+    const char *path = MOUNT_POINT"/audio/le poisson steve.mp3";
+    FILE* f = fopen(path , "r");
+    printf(f);
     
     //const char *file_foo = MOUNT_POINT"/foo.txt";
     // All done, unmount partition and disable SDMMC peripheral
