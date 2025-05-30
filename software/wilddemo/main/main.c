@@ -153,7 +153,7 @@ void app_main(void)
     sdmmc_card_print_info(stdout, card);
     const char *path = MOUNT_POINT"/audio/le poisson steve.mp3";
     FILE* f = fopen(path , "r");
-    printf(f);
+    ESP_LOGI(TAG,"%s",f);
     
     //const char *file_foo = MOUNT_POINT"/foo.txt";
     // All done, unmount partition and disable SDMMC peripheral

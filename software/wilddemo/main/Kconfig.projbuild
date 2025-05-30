@@ -1,4 +1,4 @@
-menu "SD/MMC Example Configuration"
+menu "SD/MMC Configuration"
 
     config EXAMPLE_FORMAT_IF_MOUNT_FAILED
         bool "Format the card if mount failed"
@@ -167,4 +167,6 @@ menu "SD/MMC Example Configuration"
         default 4 if IDF_TARGET_ESP32P4
         help
             Please read the schematic first and input your LDO ID.
+endmenu
+menu "I2S Configuration"
 endmenu
