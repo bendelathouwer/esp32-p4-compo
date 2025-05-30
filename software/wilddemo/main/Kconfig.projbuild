@@ -168,5 +168,53 @@ menu "SD/MMC Configuration"
         help
             Please read the schematic first and input your LDO ID.
 endmenu
-menu "I2S Configuration"
-endmenu
+menu "Codec Configuration"
+
+    menu " IO Configuration"
+        config EXAMPLE_PA_CTRL_IO
+            int "Power Amplifier control IO"
+            default 53 if IDF_TARGET_ESP32P4
+            default -1
+            help
+                Set GPIO number for PA control. Set -1 to disable PA control.
+
+        config EXAMPLE_I2C_SDA_IO
+            int "I2C SDA IO"
+            default 17 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+            default 9 if IDF_TARGET_ESP32H2
+            default 7
+
+        config EXAMPLE_I2C_SCL_IO
+            int "I2C SCL IO"
+            default 16 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+            default 8 if IDF_TARGET_ESP32H2 || IDF_TARGET_ESP32P4
+            default 6
+
+        config EXAMPLE_I2S_MCLK_IO
+            int "I2S MCLK IO"
+            default 13 if IDF_TARGET_ESP32P4
+            default 0
+
+        config EXAMPLE_I2S_BCLK_IO
+            int "I2S BCLK IO"
+            default 12 if IDF_TARGET_ESP32P4
+            default 4
+
+        config EXAMPLE_I2S_WS_IO
+            int "I2S WS IO"
+            default 10 if IDF_TARGET_ESP32P4
+            default 5
+
+        config EXAMPLE_I2S_DIN_IO
+            int "I2S DIN IO"
+            default 19 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+            default 11 if IDF_TARGET_ESP32P4
+            default 3
+
+        config EXAMPLE_I2S_DOUT_IO
+            int "I2S DOUT IO"
+            default 18 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+            default 9 if IDF_TARGET_ESP32P4
+            default 2
+
+    endmenu

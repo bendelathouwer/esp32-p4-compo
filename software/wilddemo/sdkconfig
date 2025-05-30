@@ -693,7 +693,7 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
-# SD/MMC Example Configuration
+# SD/MMC Configuration
 #
 # CONFIG_EXAMPLE_FORMAT_IF_MOUNT_FAILED is not set
 # CONFIG_EXAMPLE_FORMAT_SD_CARD is not set
@@ -708,7 +708,7 @@ CONFIG_EXAMPLE_PIN_D3=42
 # CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS is not set
 CONFIG_EXAMPLE_SD_PWR_CTRL_LDO_INTERNAL_IO=y
 CONFIG_EXAMPLE_SD_PWR_CTRL_LDO_IO_ID=4
-# end of SD/MMC Example Configuration
+# end of SD/MMC Configuration
 
 #
 # Compiler options
