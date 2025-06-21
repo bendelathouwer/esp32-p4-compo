@@ -9,7 +9,7 @@
 #include "sd_pwr_ctrl_by_on_chip_ldo.h"
 
 
-#define EXAMPLE_MAX_CHAR_SIZE    29818//thid needs to be big enough for the read function to work how big idk!!!
+#define EXAMPLE_MAX_CHAR_SIZE    1687229//thid needs to be big enough for the read function to work how big idk!!!
 
 static const char *TAG = "WILDDEMO";//name for debugging porpose 
 #define MOUNT_POINT "/DEMO"// is the root of the filesystem so to speak ( is also the name of the SD card )
@@ -124,7 +124,7 @@ void app_main(void)
     // connected on the bus. This is for debug / example purpose only.
     slot_config.flags |= SDMMC_SLOT_FLAG_INTERNAL_PULLUP;
 
-    
+    ESP_LOGI(TAG, "Mounting filesystem");
     ret = esp_vfs_fat_sdmmc_mount(mount_point, &host, &slot_config, &mount_config, &card);
 
     if (ret != ESP_OK) {
