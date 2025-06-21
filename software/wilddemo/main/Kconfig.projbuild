@@ -215,6 +215,6 @@ menu "Codec Configuration"
             int "I2S DOUT IO"
             default 18 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
             default 9 if IDF_TARGET_ESP32P4
-            default 2
-
+          default 2
     endmenu
+endmenu

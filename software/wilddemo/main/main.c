@@ -1,30 +1,26 @@
 #include <string.h>
 #include <sys/unistd.h>
 #include <sys/stat.h>
+#include "driver/i2s_std.h"
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
 #include "driver/sdmmc_host.h"
 #include "sd_test_io.h"
-#if SOC_SDMMC_IO_POWER_EXTERNAL
 #include "sd_pwr_ctrl_by_on_chip_ldo.h"
-#endif
 
-#define EXAMPLE_MAX_CHAR_SIZE    64
 
-static const char *TAG = "example";
+#define EXAMPLE_MAX_CHAR_SIZE    29818
+static const char *TAG = "WILDDEMO";
 
 #define MOUNT_POINT "/DEMO"// is the root of the filesystem so to speak ( is also the name of the SD card )
-
-#ifdef CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
 const char* names[] = {"CLK", "CMD", "D0", "D1", "D2", "D3"};
 const int pins[] = {CONFIG_EXAMPLE_PIN_CLK,
                     CONFIG_EXAMPLE_PIN_CMD,
-                    CONFIG_EXAMPLE_PIN_D0
-                    #ifdef CONFIG_EXAMPLE_SDMMC_BUS_WIDTH_4
+                    CONFIG_EXAMPLE_PIN_D0 
                     ,CONFIG_EXAMPLE_PIN_D1,
                     CONFIG_EXAMPLE_PIN_D2,
                     CONFIG_EXAMPLE_PIN_D3
-                    #endif
+                   
                     };
 
 const int pin_count = sizeof(pins)/sizeof(pins[0]);
@@ -32,12 +28,9 @@ const int pin_count = sizeof(pins)/sizeof(pins[0]);
 pin_configuration_t config = {
     .names = names,
     .pins = pins,
-#if CONFIG_EXAMPLE_ENABLE_ADC_FEATURE
-    .adc_channels = adc_channels,
-#endif
 };
-#endif //CONFIG_EXAMPLE_DEBUG_PIN_CONNECTIONS
-/*static esp_err_t read_file(const char *path)
+
+static esp_err_t read_file(const char *path)
 {
     ESP_LOGI(TAG, "Reading file %s", path);
     FILE *f = fopen(path, "r");
@@ -58,7 +51,7 @@ pin_configuration_t config = {
     ESP_LOGI(TAG, "Read from file: '%s'", line);
 
     return ESP_OK;
-}*/
+}
 
 void app_main(void)
 {
@@ -151,11 +144,9 @@ void app_main(void)
 
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
-    const char *path = MOUNT_POINT"/audio/le poisson steve.mp3";
-    FILE* f = fopen(path , "r");
-    //ESP_LOGI(TAG,"%s",f);
-    
-    //const char *file_foo = MOUNT_POINT"/foo.txt";
+    const char *pathaudio = MOUNT_POINT"/audio/Teknokiekn.mp3";
+    read_file(pathaudio);
+  
     // All done, unmount partition and disable SDMMC peripheral
     esp_vfs_fat_sdcard_unmount(mount_point, card);
     ESP_LOGI(TAG, "Card unmounted");

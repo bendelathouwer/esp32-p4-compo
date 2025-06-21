@@ -8,13 +8,14 @@
   "idf.flashType": "UART",
   "idf.espIdfPath": "/home/peter/esp/v5.4/esp-idf",
   "idf.toolsPath": "/home/peter/.espressif",
-  "idf.portWin": "COM13",
+  "idf.portWin": "COM9",
   "files.associations": {
     "sdmmc_host.h": "c",
     "sdmmc_default_configs.h": "c",
     "sdmmc_cmd.h": "c",
     "esp_vfs_fat.h": "c",
     "ff.h": "c",
-    "sdspi_host.h": "c"
+    "sdspi_host.h": "c",
+    "i2s_std.h": "c"
   }
 }
