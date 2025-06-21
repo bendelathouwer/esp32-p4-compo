@@ -9,10 +9,11 @@
 #include "sd_pwr_ctrl_by_on_chip_ldo.h"
 
 
-#define EXAMPLE_MAX_CHAR_SIZE    29818
-static const char *TAG = "WILDDEMO";
+#define EXAMPLE_MAX_CHAR_SIZE    29818//thid needs to be big enough for the read function to work how big idk!!!
 
+static const char *TAG = "WILDDEMO";//name for debugging porpose 
 #define MOUNT_POINT "/DEMO"// is the root of the filesystem so to speak ( is also the name of the SD card )
+//sd card setup 
 const char* names[] = {"CLK", "CMD", "D0", "D1", "D2", "D3"};
 const int pins[] = {CONFIG_EXAMPLE_PIN_CLK,
                     CONFIG_EXAMPLE_PIN_CMD,
@@ -30,6 +31,7 @@ pin_configuration_t config = {
     .pins = pins,
 };
 
+//read a file from the sd card 
 static esp_err_t read_file(const char *path)
 {
     ESP_LOGI(TAG, "Reading file %s", path);
@@ -68,15 +70,12 @@ void app_main(void)
     
     sdmmc_card_t *card;
     const char mount_point[] = MOUNT_POINT;
-    ESP_LOGI(TAG, "Initializing SD card");
+   
 
     // Use settings defined above to initialize SD card and mount FAT filesystem.
     // Note: esp_vfs_fat_sdmmc/sdspi_mount is all-in-one convenience functions.
     // Please check its source code and implement error recovery when developing
     // production applications.
-
-    ESP_LOGI(TAG, "Using SDMMC peripheral");
-
     // By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
     // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 40MHz for SDMMC)
     // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
@@ -114,19 +113,18 @@ void app_main(void)
     slot_config.clk = CONFIG_EXAMPLE_PIN_CLK;
     slot_config.cmd = CONFIG_EXAMPLE_PIN_CMD;
     slot_config.d0 = CONFIG_EXAMPLE_PIN_D0;
-#ifdef CONFIG_EXAMPLE_SDMMC_BUS_WIDTH_4
     slot_config.d1 = CONFIG_EXAMPLE_PIN_D1;
     slot_config.d2 = CONFIG_EXAMPLE_PIN_D2;
     slot_config.d3 = CONFIG_EXAMPLE_PIN_D3;
 #endif  // CONFIG_EXAMPLE_SDMMC_BUS_WIDTH_4
-#endif  // CONFIG_SOC_SDMMC_USE_GPIO_MATRIX
+
 
     // Enable internal pullups on enabled pins. The internal pullups
     // are insufficient however, please make sure 10k external pullups are
     // connected on the bus. This is for debug / example purpose only.
     slot_config.flags |= SDMMC_SLOT_FLAG_INTERNAL_PULLUP;
 
-    ESP_LOGI(TAG, "Mounting filesystem");
+    
     ret = esp_vfs_fat_sdmmc_mount(mount_point, &host, &slot_config, &mount_config, &card);
 
     if (ret != ESP_OK) {
