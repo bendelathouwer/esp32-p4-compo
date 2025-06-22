@@ -16,6 +16,7 @@
     "esp_vfs_fat.h": "c",
     "ff.h": "c",
     "sdspi_host.h": "c",
-    "i2s_std.h": "c"
+    "i2s_std.h": "c",
+    "cstdio": "c"
   }
 }

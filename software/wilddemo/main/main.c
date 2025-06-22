@@ -34,9 +34,9 @@ pin_configuration_t config = {
 //read a file from the sd card 
 static esp_err_t diy_read_file(const char *path)
 {
-    FILE *file;
+   
     int buffer[150];
-    file=fopen(path,"r");//opens the file for reading only(which is what we actualy want)
+    FILE *file = fopen(path,"r");//opens the file for reading only(which is what we actualy want)
     ESP_LOGI(TAG, "Reading file %s", path);
    
     if(file == NULL)// if fopen fails the code enters this state and returns an esp fail to the system 
@@ -44,6 +44,9 @@ static esp_err_t diy_read_file(const char *path)
         ESP_LOGE(TAG, "Failed to open file for reading");
         return ESP_FAIL;
     }
+
+    fread(buffer,sizeof(buffer),15,file);
+    fclose(file);//closes the file and frees up the memmory 
     return ESP_OK;//returns ok if file has been read sucsessfuly
 }
 
@@ -136,7 +139,7 @@ void app_main(void)
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
     const char *pathaudio = MOUNT_POINT"/audio/Teknokiekn.mp3";
-  
+    diy_read_file(pathaudio);//passes the path of the audio file to the read function 
     // All done, unmount partition and disable SDMMC peripheral
     esp_vfs_fat_sdcard_unmount(mount_point, card);
     ESP_LOGI(TAG, "Card unmounted");
