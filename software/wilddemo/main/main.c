@@ -39,13 +39,14 @@ static esp_err_t diy_read_file(const char *path)
     FILE *file = fopen(path,"r");//opens the file for reading only(which is what we actualy want)
     ESP_LOGI(TAG, "Reading file %s", path);
    
-    if(file == NULL)// if fopen fails the code enters this state and returns an esp fail to the system 
+    if(file == NULL)// if fopen fails the code enters this state and returns an esp fail to the system  
     {
         ESP_LOGE(TAG, "Failed to open file for reading");
         return ESP_FAIL;
     }
 
     fread(buffer,sizeof(buffer),15,file);
+    ESP_LOGE(tag,)
     fclose(file);//closes the file and frees up the memmory 
     return ESP_OK;//returns ok if file has been read sucsessfuly
 }
